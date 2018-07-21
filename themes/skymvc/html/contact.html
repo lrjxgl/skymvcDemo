@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+<div class="main-body">
+<div class="box960">
+<div class="row">
+<div class="col-12-2"> 
+{include file="html/sidebar.html"}
+</div>
+<div class="col-12-10">
+<div class="w98 right">
+{get data=data model=html fun=getWord("联系我们")}
+<div class="daohang">
+<div class="l">{$data.title}</div>
+<div class="r">首页 &gt; 关于我们</div>
+<div class="clearfix"></div>
+</div>
+
+<h1 style="padding:20px 0px; text-align:center;">{$data.title}</h1>
+ 
+<div class="d-content">{$data.content}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{include file="footer.html"}
+</body>
+</html>

@@ -1,0 +1,26 @@
+
+/* CSS Document */
+*{margin:0; padding:0px;}
+.box960{width:1120px;}
+.gomsg{border:5px solid #ccc; border-radius:5px; padding:10px; margin:0 auto; max-width:600px; width:100%;}
+.footer{margin:0 auto; width:1120px; max-height:98%; border:1px solid #ccc;  line-height:40px;   margin-bottom:10px;margin-top:10px; padding:10px;} 
+
+.loginbox{max-width:360px; width:100%;  padding:20px;  
+		margin:0 auto;
+		background-color:#eee;
+		}
+@media screen and (max-width:360px){
+	.loginbox{ width:90%;margin-left:5%; left:0px;}
+}
+.loginbox .hd{height:40px; line-height:40px; font-size:2em; text-align:center}
+.loginbox .tb{width:100%; margin:0 auto;}
+.loginbox .tb td{height:40px; padding-right:5px;}
+.loginbox .t{width:90%; height:26px; line-height:26px; padding:0px 3px;}
+/**单页**/
+.daohang{background-color:#ddd; height:40px; line-height:40px;color:#fff;}
+.daohang .l{ float:left;     padding:0px 20px;}
+.daohang .r{float:right; padding-right:10px;}
+.tabs-border.index{height:60px;}
+.tabs-border.index .item{height:60px;line-height:60px;}
+.tabs-border.index .logo {float:left;}
+.tabs-border.index .logo img{ height:55px; margin-top:5px;}

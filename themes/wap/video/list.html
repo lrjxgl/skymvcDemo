@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	{include file="head.html"}
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">视频</h1>
+		</header>
+		<div class="mui-content">
+		    <div style="position: relative; height: 50px;">
+		<div class="mui-scroll-wrapper" id="tab-cat">
+		   	 <div class="mui-scroll" style="min-width: 100%;" >
+				<div class="tabs-border">
+					<a class="item active js-cat" v="0">全部</a>
+					{foreach from=$catlist item=c}
+					<a class="item js-cat" v="{$c.catid}">{$c.cname}</a>
+					{/foreach} 
+				</div>
+			  </div>
+		</div>
+	</div>
+	<div class="vdlist" id="list">
+		 
+		{foreach item=c from=$list key=k}
+		<div class="vdlist-item" >
+			<div class="top">
+				<a href="/index.php?m=article&a=show&id={$c.id}" class="title">{$c.title}</a>
+				<div class="num">{$c.view_num}次播放</div>
+			</div>
+			<div class="playbtn"><img src="{$skins}img/play.png" ></div>
+			<div class="time">00:01</div>
+			<video id="vds{$k}" preload="metadata" object-id="{$c.id}" class="vds" webkit-playsinline   playsinline  poster="{$c.imgurl|images_site}" width="100%" src="{$c.videourl}"></video>
+		</div>
+		{/foreach}		 
+	</div>
+		</div>
+	{assign var="mfooter" value="video"}	
+	{include file="footer.html"}	
+	<script id="listtpl" type="text/html">
+	
+		 
+		<%for(var $k in list){%>
+		<% var $c=list[$k]%>
+		<div class="vdlist-item" >
+			<div class="top">
+				<a href="/index.php?m=article&a=show&id=<%=$c.id%>" class="title"><%=$c.title%></a>
+				<div class="num"><%=$c.view_num%>次播放</div>
+			</div>
+			<div class="playbtn"><img src="{$skins}img/play.png" ></div>
+			<div class="time">00:01</div>
+			<video id="vds<%=$k%>" preload="metadata" object-id="<%=$c.id%>" class="vds" webkit-playsinline   playsinline  poster="<%=$c.imgurl%>" width="100%" src="<%=$c.videourl%>"></video>
+		</div>
+		<%}%>
+	
+	 
+</script>	
+	<script src="/plugin/skyweb/listload.js"></script>
+	<script src="/plugin/jquery/template-native.js"></script>
+	<script>
+		var per_page = "{$per_page}";
+	</script>
+	<script src="{$skins}video/list.js"></script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+ 
+{include file="header.html"}
+<link href="/plugin/flexslider/flexslider.css" rel="stylesheet">
+<div class="main-body">
+	<div class="box960">
+    	<div class="row">
+        	 
+            	 <section class="slider" style="width:100%;">
+        <div class="flexslider ">
+          <ul class="slides">
+          {get data=t_c model=ad fun=listbyno("index_flash",4)}
+               {foreach item=c from=$t_c name=t1}
+              <li><a href="{$c.link1}"  ><img src="{$c.imgurl|IMAGES_SITE}" alt="{$c.title}" /></a></li>
+              {/foreach}
+          </ul>
+        </div>
+      </section>
+
+        </div>
+    </div>
+
+</div>
+
+ {include file="footer.html"}
+
+<script src="/plugin/flexslider/jquery.flexslider-min.js"></script>
+ <script>
+ $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: "100%",
+        itemMargin: 5,
+        pausePlay: true,
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+ 
+ </script>
+
+
+</body>
+
+</html>

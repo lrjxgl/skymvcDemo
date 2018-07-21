@@ -1,0 +1,14 @@
+
+模板相关
+	
+	themes/skymvc
+	themes/skymvc/index
+	themes/skymvc/wap
+	themes/skymvc/static/
+	themes/skymvc/static/js/
+	themes/skymvc/static/css/
+	themes/skymvc/static/img/
+	
+	sktpl="themes/skymvc/wap";
+	skstatic="themes/skymvc/static/";
+	

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->inc("head.html");?>
+	<body>
+		<?php $this->inc("header.html");?>
+		<div class="layui-main mgt-10">
+			<div class="list">
+				<?php 
+					foreach($data as $v):	
+				?>
+				<div class="item">
+					<div class="title"><?=$v['title'];?></div>
+				</div>
+				<?php endforeach;?>
+			</div>
+		</div>	
+		<?php $this->inc("footer.html");?>	
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+ <div class="main-body box960">
+     <div class="tabs-border">
+        <a class="item " href="{R("/index.php?m=guest")}">留言板</a>
+        <a class="item " href="{R("/index.php?m=guest&a=add")}">添加留言</a>
+        <a class="item " href="{R("/index.php?m=guest&a=my")}">我的留言</a>
+        <a class="item active" href="javascript:;">留言详情</a>
+    </div>
+ <table class='table ' width='100%'>
+  <tr><td width="100">id：</td><td>{$data.id}</td></tr>
+  <tr><td>主题：</td><td>{$data.title}</td></tr>
+  <tr><td>类型：</td><td>{$catlist[$data.catid]}</td></tr>
+  <tr><td>邮箱：</td><td>{$data.email}</td></tr>
+  <tr><td>QQ：</td><td>{$data.qq}</td></tr>
+  <tr><td>留言时间：</td><td>{$data.dateline|date:Y-m-d H:m}</td></tr>
+  <tr><td>留言内容：</td><td>{$data.content}</td></tr>
+  {if $data.reply_time}
+  <tr><td>回复内容：</td><td>{$data.reply_content}</td></tr>
+  <tr><td>回复时间：</td><td>{$data.reply_time|date:Y-m-d H:m}</td></tr>
+  {/if}
+ </table>
+ </div>
+ {include file="footer.html"}
+</body>
+</html>

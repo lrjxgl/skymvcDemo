@@ -1,0 +1,8 @@
+<div class="footer">
+ 
+</div>
+<script language="javascript">
+$(function(){
+	$(".tabs-border:eq(0)").append('<a class="item" href="javascript:window.location.reload();">刷新页面</a>');
+});
+</script>

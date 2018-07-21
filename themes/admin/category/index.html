@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="category/nav.html"}
+<div class="tabs-border"> 
+{foreach key=k item=c from=$modellist}
+<a href="{$appadmin}?m=category&model_id={$k}" class="item {if $smarty.get.model_id eq $k} active {/if}" >{$c}</a>
+{/foreach}
+<a class="item" href="{$appadmin}?m=category&pid={$nextpid}">&lt;&lt; 返回上级</a>  
+</div>
+<div class="rbox">
+ 
+<table width="100%" class="table table-bordered">
+<tr>
+<td width="82" align="center">分类ID</td>
+<td width="120" align="center">名称</td>
+<td width="97" align="center">分类级数</td>
+ 
+ 
+<td width="49" align="center">排序</td>
+<td width="71" align="center">显示</td>
+<td width="203" align="center">操作</td>
+</tr>
+{foreach item=c from=$catlist}
+<tr>
+  <td align="center">{$c.catid}</td>
+  <td align="left"><a href="{$appadmin}?m=category&pid={$c.catid}">{$c.cname}</a>  </td>
+  <td align="center">{$c.level}</td>
+  
+   
+  <td align="center"><input type="text" class="w50 blur_update" value="{$c.orderindex}" size="6"   url="{$appadmin}?m=category&a=orderindex&catid={$c.catid}" /></td>
+  <td align="center">{if $c.bstatus eq 1}<img class="ajax_no" src="static/images/yes.gif" url="{$appadmin}?m=category&a=changebstatus&catid={$c.catid}&bstatus=2" rurl="{$appadmin}?m=category&a=changebstatus&catid={$c.catid}&bstatus=1" />{else}<img class="ajax_yes" src="static/images/no.gif" url="{$appadmin}?m=category&a=changebstatus&catid={$c.catid}&bstatus=1" rurl="{$appadmin}?m=category&a=changebstatus&catid={$c.catid}&bstatus=2" />{/if}</td>
+  <td align="center"> 
+  <a href="{$appadmin}?m=category&a=add&pid={$c.catid}" style="color:red;">添加</a> &nbsp;
+  <a href="{$appadmin}?m=category&a=addmore&catid={$c.catid}" style="color:red;">批量添加</a>&nbsp;  
+  <a href="index.php?m=list&catid={$c.catid}" target="_blank">查看</a> &nbsp;
+  <a href="{$appadmin}?m=category&a=add&catid={$c.catid}">编辑</a> &nbsp;
+  <a href="javascript:;" class="delete" url="{$appadmin}?m=category&a=delete&catid={$c.catid}">删除</a></td>
+</tr>
+{if $c.child}
+{foreach item=cc from=$c.child}
+<tr>
+  <td align="center">{$cc.catid}</td>
+  <td align="left">|__<a href="{$appadmin}?m=category&pid={$cc.catid}">{$cc.cname}</a></td>
+  <td align="center">{$cc.level}</td>
+ 
+ 
+  <td align="center"><input type="text" class="w50 blur_update" value="{$cc.orderindex}" size="6"   url="{$appadmin}?m=category&a=orderindex&catid={$cc.catid}" /></td>
+  <td align="center">{if $cc.bstatus eq 1}<img class="ajax_no" src="static/images/yes.gif" url="{$appadmin}?m=category&a=changebstatus&catid={$cc.catid}&bstatus=2" rurl="{$appadmin}?m=category&a=changebstatus&catid={$cc.catid}&bstatus=1" />{else}<img class="ajax_yes" src="static/images/no.gif" url="{$appadmin}?m=category&a=changebstatus&catid={$cc.catid}&bstatus=1" rurl="{$appadmin}?m=category&a=changebstatus&catid={$cc.catid}&bstatus=2" />{/if}</td>
+  <td align="center">
+   <a href="{$appadmin}?m=category&a=add&pid={$cc.catid}" style="color:red;">添加</a> &nbsp;
+   <a href="{$appadmin}?m=category&a=addmore&catid={$cc.catid}" style="color:red;">批量添加</a>   &nbsp;
+  <a href="index.php?m=list&catid={$cc.catid}" target="_blank">查看</a>  &nbsp;
+  <a href="{$appadmin}?m=category&a=add&catid={$cc.catid}">编辑</a> &nbsp;
+  <a href="javascript:;" class="delete" url="{$appadmin}?m=category&a=delete&catid={$cc.catid}">删除</a> &nbsp;
+  </td>
+</tr>
+{/foreach} 
+
+{/if}
+
+{/foreach} 
+</table>
+
+</div>
+
+{include file='footer.html'}
+</body>
+</html>

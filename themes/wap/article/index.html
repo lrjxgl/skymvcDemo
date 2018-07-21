@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	{include file="head.html"}
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">要闻</h1>
+		</header>
+		<div class="mui-content">
+		    <div style="position: relative; height: 50px;">
+		<div class="mui-scroll-wrapper" id="tab-cat">
+		   	 <div class="mui-scroll" style="min-width: 100%;" >
+				<div class="tabs-border">
+					<a class="item active js-cat" v="0">全部</a>
+					 
+					{foreach item=c from=$catlist}	
+					<a class="item js-cat" v="{$c.catid}">{$c.cname}</a>
+					{/foreach}
+				</div>
+			  </div>
+		</div>
+	</div>
+	<ul id="list" class="mui-table-view mui-table-view-chevron">
+		 
+	 	{foreach item=value from=$list}
+			  	
+        		<li class="mui-table-view-cell">
+        			<a href="/index.php?m=article&a=show&id={$value.id}" class="mui-navigate-right">
+        			{if $value.imgurl }
+        			<img class="mui-media-object mui-pull-left" src="{$value.imgurl|images_site}.100x100.jpg">
+                    <div class="mui-media-body">
+                        {$value.title}
+                        <p class='mui-ellipsis'>{$value.description}</p>
+                    </div>
+                    {else}
+        				{$value.title}
+        			{/if}
+        			</a>
+        		</li>
+ 
+		{/foreach}		 
+	</ul>
+		</div>
+	{assign var="mfooter" value="article"}	
+	{include file="footer.html"}	
+	</body>
+</html>

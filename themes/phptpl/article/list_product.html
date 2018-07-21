@@ -1,0 +1,73 @@
+<!DOCTYPE >
+<html>
+	<?php $this->inc("head.html");?>
+
+	<body>
+		<link href="/plugin/skyweb/prolist.css" rel="stylesheet"> 
+		<?php $this->inc("header.html"); ?>
+		<div class="layui-main">
+			<?php $this->inc("inc/list_breadcrumb.html"); ?>
+			 
+
+			<div class="search-filter-box">
+				<input type="hidden" id="filter_catid" value="<?=get('catid','i')?>">
+				<input type="hidden" id="filter_order" value="<?=get('orderby')?get('orderby','h'):"all";?>">
+
+				 
+				<div class="search-filter" o="catid">
+					<div class="hd">类别</div>
+					<div class="search-option-box">
+						<div class="pd">
+							<div class="search-option <?php if(get('catid') == $cat_top['catid']):?>active<?php endif;?>" v="<?=$cat_top['catid']?>">全部</div>
+							 
+							<?php foreach($catlist as $c):?>
+							<div class="search-option <?php if(get('catid') == $c['catid']):?>active<?php endif;?>" v="<?=$c['catid']?>"><?=$c['cname']?></div>
+							<?php endforeach;?>
+
+						</div>
+					</div>
+
+				</div>
+
+				<div class="search-filter" o="orderby">
+					<div class="hd">排序</div>
+					<div class="search-option-box">
+						<div class="pd">
+							<div class="search-option <?php if(get('orderby') == 'all'):?>active<?php endif;?>" v="all">综合排序</div>
+							<div class="search-option <?php if( get('orderby') == 'price'):?>active<?php endif;?>" v="price">价格</div>
+							<div class="search-option <?php if( get('orderby') == 'id'):?>active<?php endif;?>" v="id">发布时间</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="prolist">
+				 
+				<?php foreach($list as $k=>$c):?>
+				<div class="item btc-{$k} ">
+					<div class="pd">
+						<div class="img">
+							<a href="<?=R('/index.php?m=article&a=show&id='.$c['id'])?>">
+								<img src="<?=images_site($c['imgurl'])?>.middle.jpg">
+							</a>
+						</div>
+						<div class="title">
+							<a href="<?=R('/index.php?m=article&a=show&id='.$c['id'])?>"><?=$c['title']?></a>
+						</div>
+						<div class="desc"><?=$c['description']?></div>
+						<div class="price">￥<?=$c['price']?></div>
+					</div>
+				</div>
+				<?php endforeach;?>
+
+				<div class="clearfix"></div>
+			</div>
+
+		</div>
+
+		<?php $this->inc("footer.html")?>
+		<script src="/<?=$skins?>/article/list_product.js"></script>
+	</body>
+
+</html>

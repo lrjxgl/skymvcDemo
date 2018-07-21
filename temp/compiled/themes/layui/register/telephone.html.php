@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<?php echo $this->fetch('head.html'); ?>
+
+<body>
+ 	<?php echo $this->fetch('header.html'); ?>
+ 	
+	 <div style="width: 500px; margin: 0 auto; margin-top: 30px;">
+	 	<div class="tabs-border" style="margin-bottom: 20px; padding-left: 100px;">
+	 		<a href="<?php echo R("/index.php?m=login");?>" class="item">登录</a>
+	 		<a href="<?php echo R("/index.php?m=register");?>" class="item active">注册</a>
+	 	</div> 
+	 	<form class="layui-form" id="reg-form">
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				手机
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="text" class="layui-input" id="telephone" name="telephone" />
+	 			</div>
+	 		</div>
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				验证码
+	 			</div>
+	 			<div class="layui-input-inline">
+	 				<input name="yzm" class="layui-input" />
+	 			</div>
+	 			<div class="layui-btn" id="getYzm">获取验证码</div>
+	 		</div>
+	  
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				昵称
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="text" class="layui-input" name="nickname" />
+	 			</div>
+	 		</div>
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				密码
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="password" class="layui-input" name="password" />
+	 			</div>
+	 		</div>
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				重复密码
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="password" class="layui-input" name="password2" />
+	 			</div>
+	 		</div>
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-input-block">
+	 				<div id="reg-submit" class="layui-btn">确认注册</div>
+	 				<button type="reset" class="layui-btn">取消</button>
+	 			</div>
+	 		</div>
+	 	</form>
+	 </div>
+ <?php echo $this->fetch('footer.html'); ?>     
+    <script type="text/javascript" class="jsa-text">
+$(function(){
+	var ispost=false;
+	$(document).on("click","#getYzm",function(){
+		$.get("/index.php?m=register&a=SendSms&ajax=1",{telephone:$("#telephone").val()},function(data){
+			layer.msg(data.message);
+		},"json");
+		
+	});
+	$("#reg-submit").on("click",function(){
+		if(ispost==true) return false;
+		ispost=true;
+		setTimeout(function(){
+			ispost=false;
+		},1000);
+		$.post("/index.php?m=register&a=regSave&ajax=1",$("#reg-form").serialize(),function(data){
+			if(data.error==1){
+				layer.msg(data.message);
+			}else{
+				layer.msg("注册成功");
+				setTimeout(function(){
+				window.location="/index.php";
+				},700);
+			}
+		},"json");
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+ <li <?php if($c['imgurl']):?> class="hasimg" <?php endif;?>>
+    <a class="aurl" href="<?=R("/index.php?m=article&a=show&id=".$c['id'])?>">
+       <?php if($c['imgurl']):?> <img src="<?=images_site($c['imgurl'])?>.100x100.jpg"/><?php endif;?>
+        <dl>
+            <dt><?=$c['title']?></dt>
+            <dd class="time"><?=timeago($c['dateline'])?></dd>
+            <dd class="content"><?=$c['description']?></dd>
+             
+        </dl>
+    </a>
+</li>

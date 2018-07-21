@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->inc("head.html");?>
+	<body>
+		<?php $this->inc("header.html");?>
+		<div class="layui-main mgt-10">
+			 <div class="d-title">
+			 	<?=$data['title']?>
+			 </div>
+			 <div class="d-tool">
+			 	<div class="time"><?=$data['createtime']?></div>
+			 </div>
+			 <div class="d-content">
+			 	<?=$data['content']?>
+			 </div>
+		</div>	
+		<?php $this->inc("footer.html");?>	
+	</body>
+</html>

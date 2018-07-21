@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->inc("head.html");?>
+
+	<body>
+		<?php $this->inc("header.html");?>
+		<div class="layui-main">
+			<div class="tabs-border">
+				<a class="item active" href="/index.php?m=guest">留言板</a>
+				<a class="item" href="/index.php?m=guest&a=add">添加留言</a>
+				 
+			</div>
+			<div class="guestlist">
+				<?php foreach($data as $c):?>
+				<div class="item">
+					<div class="title"><?=$c['title']?>
+						<div class="time"><?=timeago($c['dateline'])?></div>
+					</div>
+					<div class="con"><div class="t">留言内容：</div><?=$c['content']?></div>
+					<div class="con"><div class="t">回复内容：</div><?=$c['reply_content']?></div>
+					
+				</div>
+				<?php endforeach;?>
+			</div>
+			<div><?=$pagelist?></div>
+		</div>
+		<?php $this->inc("footer.html");?>
+	</body>
+
+</html>

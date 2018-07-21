@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+
+{include file="header.html"}
+<div class="main-body box960">
+	<form method="post" action="/index.php?m=upload&a=upload" enctype="multipart/form-data">
+    <div class="row">
+    	<div class="btn-upload">
+        	<i class="iconfont icon-upload"></i>
+            上传文件
+        	<div class="btn-upload-file">
+             	<input type="file" id="upimg" name="upimg" multiple>
+             </div>
+        </div>
+    </div>
+    <div style="height:10px;"></div>
+    <div class="row">
+    <input type="submit" class="btn" value="上传">
+    </div>
+    </form>
+    <h3>上传结果</h3>
+    <div class="result" id="result"></div>
+</div>
+{include file="footer.html"}
+<style>
+	.result{border:1px solid #ccc; padding:5px;}
+	.result div{line-height:24px;}
+	.result .e{color:#D58384;}
+	.result .s{color:#59A42A;}
+</style>
+<script src="/static/js/skyupload.js"></script>
+<script>
+	$(document).on("change","#upimg",function(data){
+		skyUpload("upimg","/index.php?m=upload&a=upload&ajax=1",function(e){
+			var data=eval("("+e.target.responseText+")");
+			if(data.err){
+				$("#result").append('<div class="e">error:'+data.err+'</div>');
+			}else{
+				$("#result").append('<div class="s">success:'+data.filename+'</div>');
+			}
+		});
+	});
+</script>
+</body>
+</html>

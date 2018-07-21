@@ -1,0 +1,91 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+<div class="tabs-border">
+<a class="active item" href="{$appadmin}?m=navbar&group_id=1">导航管理</a>
+<a class="item" href="{$appadmin}?m=navbar&a=add">导航添加</a>
+</div>
+<div class="tabs-border mgb-10"> 
+{foreach item=g key=k from=$group_list}
+<a class="item {if $k eq get('group_id')}active{/if}" href="{$appadmin}?m=navbar&group_id={$k}">{$g}</a>
+{/foreach}
+</p>
+</div>
+<div class="rbox">
+<form action="{$appadmin}?m=navbar&a=order" method="post">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#FFFFFF" class="table table-bordered">
+  <tr>
+    <td width="5%" align="center">ID</td>
+    <td width="10%" align="center">名称</td>
+    <td width="5%">状态</td>
+    <td width="4%" align="center">m</td>
+    <td width="4%" align="center">a</td>
+    <td width="10%" height="30" align="center">位置</td>
+    <td width="7%" align="center">打开方式</td>
+    
+    <td width="7%" height="30" align="center">排序</td>
+    <td width="16%" height="30" align="center">操作</td>
+  </tr>
+  {foreach item=t from=$navlist}
+  <tr>
+    <td align="center">{$t.id}</td>
+  <td align="left"><a href="{$t.link_url}" target="_blank" style="color:red">{$t.title}</a></td>
+  <td>{if $t.bstatus eq 1}
+   <img src='/static/images/yes.gif' class="ajax_no" url='{$appadmin}?m=navbar&a=bstatus&id={$t.id}&bstatus=0' rurl='{$appadmin}?m=navbar&a=bstatus&id={$t.id}&bstatus=1'>
+    {else}
+    <img src='/static/images/yes.gif' class="ajax_yes" url='{$appadmin}?m=navbar&a=bstatus&id={$t.id}&bstatus=1' rurl='{$appadmin}?m=navbar&a=bstatus&id={$t.id}&bstatus=0'>
+    {/if}</td>
+  <td align="center">{$t.m}</td>
+  <td align="center">{$t.a}</td>
+    <td height="25" align="center">{$group_list.$t.group_id}</td>
+    <td align="center">{if $t.target eq '_blank'}新窗口{else}当前窗口{/if}</td>
+    <input type="hidden" name="id[]" value="{$t.id}" />
+    <td height="25" align="center"><input name="orderindex[]" type="text" value="{$t.orderindex}" style="width:50px;" /></td>
+    <td height="25" align="center">
+    <a href="{$appadmin}?m=navbar&a=add&pid={$t.id}" style="color:red;">添加下级导航</a>
+    <a href="{$appadmin}?m=navbar&a=add&id={$t.id}">编辑</a> 
+    <a href="javascript:;"  url="{$appadmin}?m=navbar&a=delete&id={$t.id}" class="delete" >删除</a></td>
+  </tr>
+  {if $t.child}
+  {foreach item=c from=$t.child}
+    <tr>
+      <td align="center">{$c.id}</td>
+  <td align="left">|__<a href="{$c.link_url}" target="_blank">{$c.title}</a> </td>
+  <td>{if $c.bstatus eq 1}
+   <img src='{$skins}images/yes.gif' class="ajax_no" url='{$appadmin}?m=navbar&a=bstatus&id={$c.id}&bstatus=0' rurl='{$appadmin}?m=navbar&a=bstatus&id={$c.id}&bstatus=1'>
+    {else}
+    <img src='{$skins}images/no.gif' class="ajax_yes" url='{$appadmin}?m=navbar&a=bstatus&id={$c.id}&bstatus=1' rurl='{$appadmin}?m=navbar&a=bstatus&id={$c.id}&bstatus=0'>
+    {/if}</td>
+  <td align="center">{$c.m}</td>
+  <td align="center">{$c.a}</td>
+    <td height="25" align="center">{$group_list.$c.group_id}</td>
+    <td align="center">{if $c.target eq '_blank'}{$lang._blank}{else}{$lang._self}{/if}</td>
+    <input type="hidden" name="id[]" value="{$c.id}" />
+    
+    <td height="25" align="center"><input name="orderindex[]" type="text" value="{$c.orderindex}"  style="width:50px;" /></td>
+    <td height="25" align="center">
+    <a href="{$appadmin}?m=navbar&a=add&id={$c.id}">编辑</a> 
+    <a href="javascript:;"  url="{$appadmin}?m=navbar&a=delete&id={$c.id}" class="delete" >删除</a>
+    </td>
+  </tr>
+  {/foreach}
+  {/if}
+	{/foreach}
+  <tr>
+    <td colspan="9" align="right"><input type="submit" name="button" id="button" value="更改排序" class="btn" /></td>
+    </tr>
+    {if $pagelist}
+    <tr>
+    <td colspan="9" align="right">{$pagelist}</td>
+    </tr>
+    {/if}
+</table>
+
+</form>
+</div>
+
+{include file='footer.html'}
+</body>
+</html>
+ 

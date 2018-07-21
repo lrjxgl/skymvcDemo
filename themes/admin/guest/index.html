@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+
+
+ <div class="main-body w98">
+ <div class="tabs-border">
+	<a class="item active" href="{R("/admin.php?m=guest")}">留言板</a>
+  
+ 
+</div>
+ <table class='table table-bordered' width='100%'>
+  <tr class="hd">
+   <td>id</td>
+   <td>主题</td>
+   <td>状态</td>
+   <td>类型</td>
+   <td>邮箱</td>
+   <td>QQ</td>
+   <td>留言时间</td>
+   <td>留言内容</td>
+    
+   <td>回复时间</td>
+ <td>操作</td>
+  </tr>
+ {foreach item=c from=$data}
+<tr>
+   <td>{$c.id}</td>
+   <td>{$c.title}</td>
+   <td> {if $c.bstatus eq 2}
+   <img src='{$skins}images/yes.gif' class="ajax_no" url='{$appadmin}?m=guest&a=bstatus&id={$c.id}&bstatus=10' rurl='{$appadmin}?m=guest&a=bstatus&id={$c.id}&bstatus=2'>
+    {else}
+    <img src='{$skins}images/no.gif' class="ajax_yes" url='{$appadmin}?m=guest&a=bstatus&id={$c.id}&bstatus=2' rurl='{$appadmin}?m=guest&a=bstatus&id={$c.id}&bstatus=10'>
+    {/if}
+    </td>
+   <td>{$catlist[$c.catid]}</td>
+   <td>{$c.email}</td>
+   <td>{$c.qq}</td>
+   <td>{$c.dateline|date:Y-m-d H:m}</td>
+   <td>{$c.content|cutstr:32:...}</td>
+   
+   <td>{if $c.reply_time}{$c.reply_time|date:Y-m-d H:m}{else}暂无回复{/if}</td>
+ <td><a href="{R("admin.php?m=guest&a=add&id=$c.id")}">编辑</a>  &nbsp;
+ 
+ <a href="{R("admin.php?m=guest&a=delete&id=$c.id")}">删除</a></td>
+  </tr>
+   {/foreach}
+ </table>
+<div>{$pagelist}</div>
+</div> 
+{include file="footer.html"}
+</body>
+</html>

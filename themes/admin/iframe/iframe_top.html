@@ -1,0 +1,58 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+<div id="playmsg" ></div>
+<div class="top">
+<div class="logo"><img src="{$skins}images/logo.png"   /></div>
+
+<div class="topnav" id="topnav">
+{if $data}
+{foreach item=c key=k from=$data}
+<a href="{$c.link_url}" class="{if $k eq 0}on{/if}" target="menu-frame">{$c.title}</a>
+{/foreach}
+{/if}
+</div>
+
+
+<div class="header">
+{if  ADMINGID>2}
+{$site.sitename}
+{else}
+<a href="{$appadmin}?m=sites" target="main-frame">网站管理</a>
+{/if}
+
+{$ssadmin.username} 
+<a href="{$appadmin}?m=login&a=logout" target="_parent">退出管理</a>
+ 
+<a href="{$appadmin}?m=iframe&a=main" target="main-frame">管理首页</a>
+<a href="/index.php" target="_blank">网站首页</a> 
+
+
+</div>
+
+
+</div>
+<script language="javascript">
+$(document).ready(function()
+{
+	$("#topnav a:nth-child(1)").addClass('on'); 
+	$('#topnav a').click(function(){
+		$('#topnav a').removeClass('on');
+		$(this).addClass('on');
+	});
+	
+	$("#refresh_permission").click(function(){
+		 $.get($(this).attr("url"),function(data){
+			alert('刷新成功'); 
+		})
+	})
+ 
+});
+
+
+ 
+</script>
+
+</body>
+</html>

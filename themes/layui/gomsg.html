@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+
+<script language="javascript">
+function movenew()
+{
+	document.location="{$url}";
+}
+setTimeout(movenew,300);
+
+</script>
+<body>
+{include file="header.html"}
+<div class="layui-main">	 
+    <div class="layui-elem-quote layui-quote-nm">{$message}，如果没有自动跳转请点击 <a href="{$url}">跳转</a></div>    
+</div>
+{include file="footer.html"}
+</body>
+</html>

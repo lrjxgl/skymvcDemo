@@ -1,0 +1,12 @@
+<div class="layui-breadcrumb">
+  <a href="/index.php">首页</a>
+  <a href="<?=R("/index.php?m=article&a=list&catid=".$cat_top['catid'])?>"><?=$cat_top['cname']?></a>
+  <?php if($cat_2nd):?>
+  	<a href="<?=R("/index.php?m=article&a=list&catid=".$cat_2nd['catid'])?>"><?=$cat_2nd['cname']?></a>
+  <?php endif;?>
+  <?php if($cat_3nd):?>
+  <a href="<?=R("/index.php?m=article&a=list&catid=".$cat_3nd['catid'])?>"><?=$cat_3nd['cname']?></a>
+  <?php endif; ?>
+ 
+  <a><cite>列表</cite></a>
+</div>

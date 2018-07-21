@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<title>skymvc</title>
+
+<link href="http://skyweb.skymvc.com/skyweb/skyweb.css" rel="stylesheet">
+<link href="/static/css/common.css" rel="stylesheet">
+<script src="http://skyweb.skymvc.com/skyweb/skyweb.js"></script>
+</head>
+<body>
+<div class="header">
+	这是头部</div><div class="main-body box960">
+	<div>说明：用大括号{}替换中括号</div>
+	<div>str:我是字符串</div>
+    
+    <div>array:Array
+(
+    [0] => 我是数组1
+    [1] => 我是数组2
+    [2] => 我是数组3
+    [3] => 我是数组4
+)
+1    	<br>
+        <h3>foreach语法</h3>
+                 0:我是数组1 index:0 k+1:1 k*2:0         第一条                                                      <br>
+                 1:我是数组2 index:1 k+1:2 k*2:2                                             k==1                  <br>
+                 2:我是数组3 index:2 k+1:3 k*2:4                           k>=1                            k>=2         <br>
+                 3:我是数组4 index:3 k+1:4 k*2:6                  最后一条         k>=1         k==3                   k>=2         <br>
+            </div>
+    <h3>if语法</h3>
+    <pre>
+    //基础
+        if($a*2>3){
+            a
+        }elseif($b){
+            b
+        }else{
+            c
+        }
+       	if中的表达式
+        	if($a) if(!$a)
+        	if($a=='a') if($a==0)
+            加入计算 + - * / % 
+            if($a+1>1) if($a*1>1)
+             
+        //判断方法
+        == eq相等，
+         
+        !=  neq不相等，
+         
+        > gt大于，
+         
+        < lt小于，
+         
+        >= gte、ge大于等于，
+         
+        <= lte、le 小于等于，
+    </pre>
+    
+    <h3>数学扩展</h3>
+    <div> [math equation="x+y*z/s" x="1" y="2" z="3" s="4" ]=2.5 [] </div>
+    <h3>函数扩展</h3>
+    <pre>
+    例 fun($str,a,b)
+    我是字符串    1.字数截取 cutstr($string, $length, $dot = ' ...')
+    [$str|cutstr:18:...]
+    
+    2.时间格式化date
+    2016-03-29 12:12:112
+    [$dateline|date:Y-m-d H:i:s]
+    
+    3.timeago 多久之前
+    5分钟前
+    [$dateline|timeago]
+    </pre>
+    <h3>get方法</h3>
+    <div>
+    	get调用数据 对应的是model的方法
+        
+              	1. id:1 asd<br>
+         	2. id:2 asdxxxxx<br>
+         	3. id:3 asda<br>
+         </div>
+    <h3>api方法</h3>
+    <div>
+    	api调用数据 对应的是ctrl的方法
+    	                  asd<br>
+          asdxxxxx<br>
+          asda<br>
+             
+    </div>
+</div>
+<div class="footer">
+这是尾部
+</div></body>
+</html>

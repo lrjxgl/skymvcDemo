@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<?php echo $this->fetch('head.html'); ?>
+
+<body>
+ 	<?php echo $this->fetch('header.html'); ?>
+ 	
+	 <div style="width: 500px; margin: 0 auto; margin-top: 30px;">
+	 	<div class="tabs-border" style="margin-bottom: 20px; padding-left: 100px;">
+	 		<a href="<?php echo R("/index.php?m=login");?>" class="item active">登录</a>
+	 		<a href="<?php echo R("/index.php?m=register");?>" class="item ">注册</a>
+	 	</div> 
+	 	<form class="layui-form" id="login-form">
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				手机
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="text" class="layui-input" name="telephone" />
+	 			</div>
+	 		</div>
+	 		 
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-form-label">
+	 				密码
+	 			</div>
+	 			<div class="layui-input-block">
+	 				<input type="password" class="layui-input" name="password" />
+	 			</div>
+	 		</div>
+	 		
+	 		 
+	 		
+	 		<div class="layui-form-item">
+	 			<div class="layui-input-block">
+	 				<div id="login-submit" class="layui-btn">确认登录</div>
+	 				<button type="reset" class="layui-btn">取消</button>
+	 			</div>
+	 		</div>
+	 	</form>
+	 </div>
+ <?php echo $this->fetch('footer.html'); ?>
+  
+    <script type="text/javascript" class="jsa-text">
+	$(function(){ 
+	var ispost=false;
+	$("#login-submit").on("click",function(){
+		if(ispost==true) return false;
+		ispost=true;
+		setTimeout(function(){
+			ispost=false;
+		},1000);
+		$.post("/index.php?m=login&a=loginSave&ajax=1",$("#login-form").serialize(),function(data){
+			if(data.error==1){
+				layer.msg(data.message,{time:2000});
+			}else{
+				layer.msg("登录成功",{time:2000});
+				setTimeout(function(){
+				window.location="/index.php";
+				},700);
+			}
+		},"json");
+	});
+});
+</script>
+</body>
+</html>

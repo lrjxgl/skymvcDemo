@@ -1,0 +1,9 @@
+<div class="tabs-border">
+<a href="{$appadmin}?m=ad&tag_id={php echo get_post('tag_id')}"  class="{if get('m') eq 'ad' && get('a') eq 'default'}active{/if} item">广告管理</a>
+
+<a class="item {if get('m') eq 'ad' && get('a') eq 'add'}active{/if}" href="{$appadmin}?m=ad&a=add&tag_id={php echo get_post('tag_id')}">广告添加</a>
+<a class="item {if get('m') eq 'ad_tags' && get('a') eq 'default'}active{/if}" href="{$appadmin}?m=ad_tags">广告分类管理</a>
+<a class="item {if get('m') eq 'ad_tags' && get('a') eq 'ad'}active{/if}" href="{$appadmin}?m=ad_tags&a=add">广告分类添加</a>
+
+
+</div>

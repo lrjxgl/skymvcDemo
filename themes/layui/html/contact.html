@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+{get data=data model=html fun=getWord("联系我们")}
+<div class="layui-main">
+ <div class="layui-breadcrumb">
+ 	<a href="/index.php">首页</a>
+ 	<a><cite>{$data.title}</cite></a>
+ </div>	
+<div class="layui-row">
+<div class="layui-col-md2"> 
+{include file="html/sidebar.html"}
+</div>
+<div class="layui-col-md10">
+ 
+
+ 
+
+<h1 style="padding:20px 0px; text-align:center;">{$data.title}</h1>
+ 
+<div class="d-content">{$data.content}</div>
+ 
+</div>
+</div>
+</div>
+</div>
+{include file="footer.html"}
+</body>
+</html>

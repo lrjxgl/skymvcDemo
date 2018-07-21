@@ -1,0 +1,98 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+ <style>
+ .saveConfig{float:right; color:red; cursor:pointer;}
+ .showdefault{color:red; cursor:pointer;}
+ .skinsinfo{height:60px; width:98%; overflow:auto;}
+ .none{display:none;}
+ </style>
+<div class="tabs-border">
+	<a class="item active" href="{const.APPADMIN}?m=template">本地模板</a>
+    <a  class="item" href="{const.APPADMIN}?m=template&a=online">在线模板</a>
+</div>
+<div class="main-body">
+<div class="row">
+{foreach item=t from=$skinslist}
+<div class="col-12-3"> 
+<table  class="table table-bordered">
+  <tr>
+    <td height="166"><a href="{$t.skinsimg}" target="_blank"><img src="{$t.skinsimg}" style="width:200px; height:160px;"  /></a></td>
+    </tr>
+  <tr>
+    <td height="20">&nbsp;&nbsp;风格名称：{$t.skinsname}</td>
+    </tr>
+  <tr>
+  <tr>
+  	<td height="20">&nbsp;&nbsp;价格：{if $t.skinsprice}{$t.skinsprice}{else}免费{/if}</td>
+  </tr>
+    <td height="20">&nbsp;&nbsp;风格作者：<a href="{$t.skinsauthorsite}" target="_blank">{$t.skinsauthor}</a></td>
+  </tr>
+  <tr>
+    <td height="20">&nbsp;&nbsp;适合版本：{$t.skinsversion} {if $t.skinstype eq 'wap'}手机版{/if}</td>
+  </tr>
+  <tr>
+  <td>
+  	使用说明<br>
+    <div class="skinsinfo">{$t.skinsinfo}</div>
+  </td>
+  </tr>
+  <tr>
+  <td>
+  <div class="save-row">
+  		<div class="pd-10">参数配置  <span class="showdefault">显示默认</span> <span class="saveConfig" skinsdir="{$t.skinsdir}">保存配置</span> </div>
+{if $t.myskinsdata}
+    <textarea class="w98 h60 skinsdata">
+    {$t.myskinsdata}
+    </textarea>
+    
+    <textarea class="w98 h60 oldskinsdata none">
+    {foreach item=c key=k from=$t.skinsdata}
+    {$k}=>{$c} 
+    {/foreach}
+    </textarea>
+{else}
+    <textarea class="w98 h60 skinsdata ">
+    {foreach item=c key=k from=$t.skinsdata}
+    {$k}=>{$c} 
+    {/foreach}
+    </textarea>
+    <textarea class="w98 h60 oldskinsdata none">
+    {foreach item=c key=k from=$t.skinsdata}
+    {$k}=>{$c} 
+    {/foreach}
+    </textarea>
+{/if}
+</div>
+  </td>
+  </tr>
+  
+  <tr>
+    <td height="20">&nbsp;&nbsp;{$t.using}  </td>
+  </tr>
+</table>
+
+</div>
+{/foreach}
+</div>
+ </div>
+{include file='footer.html'}
+<script>
+	$(document).on("click",".saveConfig",function(){
+		$.post("{$appadmin}?m=template&a=skinsdata&ajax=1",{
+			"skinsdir":$(this).attr("skinsdir"),
+			"skinsdata":$(this).parents(".save-row").find(".skinsdata").val()	
+		},function(data){
+			skyToast(data.message);
+		},"json");
+	});
+	
+	$(document).on("click",".showdefault",function(){
+		$(this).parents(".save-row").find(".oldskinsdata").toggle();
+	});
+	
+	
+</script>
+</body>
+</html>

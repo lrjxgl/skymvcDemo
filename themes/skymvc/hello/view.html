@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+{include file="header.html"}
+<div class="main-body box960">
+	<div>说明：用大括号{}替换中括号</div>
+	<div>str:{$str}</div>
+    
+    <div>array:{$arr|print_r}
+    	<br>
+        <h3>foreach语法</h3>
+        {foreach  from=$arr item=v key=k  name=foo }
+         {$k}:{$v} index:{$smarty.foreach.foo.index} k+1:{$k+1} k*2:{$k*2}
+         {if $smarty.foreach.foo.first}第一条{/if}
+         {if $smarty.foreach.foo.last}最后一条{/if}
+         {if $k+2>3}k>=1{/if}
+         {if $k*2==6}k==3{/if}
+         {if $k%3==1}k==1{/if}
+         {if $k gte 2} k>=2{/if}
+         <br>
+        {/foreach}
+    </div>
+    <h3>if语法</h3>
+    <pre>
+    //基础
+        if($a*2>3){
+            a
+        }elseif($b){
+            b
+        }else{
+            c
+        }
+       	if中的表达式
+        	if($a) if(!$a)
+        	if($a=='a') if($a==0)
+            加入计算 + - * / % 
+            if($a+1>1) if($a*1>1)
+             
+        //判断方法
+        == eq相等，
+         
+        !=  neq不相等，
+         
+        > gt大于，
+         
+        < lt小于，
+         
+        >= gte、ge大于等于，
+         
+        <= lte、le 小于等于，
+    </pre>
+    
+    <h3>数学扩展</h3>
+    <div> [math equation="x+y*z/s" x="1" y="2" z="3" s="4" ]={math equation="x+y*z/s" x="1" y="2" z="3" s="4"} [] </div>
+    <h3>函数扩展</h3>
+    <pre>
+    例 fun($str,a,b)
+    {$str|fun:a:b}
+    1.字数截取 cutstr($string, $length, $dot = ' ...')
+    [$str|cutstr:18:...]
+    
+    2.时间格式化date
+    2016-03-29 12:12:112
+    [$dateline|date:Y-m-d H:i:s]
+    
+    3.timeago 多久之前
+    5分钟前
+    [$dateline|timeago]
+    </pre>
+    <h3>get方法</h3>
+    <div>
+    	get调用数据 对应的是model的方法
+        
+     {get data=getdata model=hello fun=idlist(array())}
+     {foreach item=c key=k from=$getdata}
+    	{$k}. id:{$c.id} {$c.title}<br>
+     {/foreach}
+    </div>
+    <h3>api方法</h3>
+    <div>
+    	api调用数据 对应的是ctrl的方法
+    	{api data=apidata control=hello fun=api() }
+        {get data=apidata model=hello fun=select()}
+     {foreach item=c from=$apidata}
+     {$c.title}<br>
+     {/foreach}
+        
+    </div>
+</div>
+{include file="footer.html"}
+</body>
+</html>

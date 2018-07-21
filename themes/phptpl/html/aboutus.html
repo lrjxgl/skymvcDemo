@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<?php $this->inc("head.html");?>
+<body>
+<?php $this->inc("header.html"); ?>
+<?php $data=M("html")->getWord("关于我们");?>
+<div class="layui-main">
+ <div class="layui-breadcrumb">
+ 	<a href="/index.php">首页</a>
+ 	<a><cite><?=$data['title']?></cite></a>
+ </div>	
+<div class="layui-row">
+<div class="layui-col-md2"> 
+ 
+<?php $this->inc("html/sidebar.html")?>
+</div>
+<div class="layui-col-md10">
+ 
+
+ 
+
+<h1 style="padding:20px 0px; text-align:center;"><?=$data['title']?></h1>
+ 
+<div class="d-content"><?=$data['content']?></div>
+ 
+</div>
+</div>
+</div>
+</div>
+<?php $this->inc("footer.html")?>
+</body>
+</html>

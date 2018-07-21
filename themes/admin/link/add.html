@@ -1,0 +1,58 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+{include file="link/nav.html"}
+
+<div class="rbox">
+<form method="post" action="{$appadmin}?m=link&a=save">
+<input type="hidden" name="id" value="{$data.id}" />
+<table width="100%" border="0" class="table table-bordered">
+  <tr>
+    <td width="21%" align="right">名称：</td>
+    <td width="79%"><input name="title" type="text" id="title" value="{$data.title}"></td>
+  </tr>
+  <tr>
+    <td align="right">链接：</td>
+    <td><input name="link_url" type="text" id="link_url"  class="w400" value="{$data.link_url}"></td>
+  </tr>
+  <tr>
+    <td align="right">图片：</td>
+    <td>
+    	<div class="upload-row">
+        	
+        	<div class="btn-upload">
+            上传图片
+            	<input type="file" class="btn-upload-file" id="up1" onChange="uploadImg('up1')">
+            </div>
+            <input name="link_img" type="hidden" id="link_img" class="w400 upload-field" value="{$data.link_img}">
+            <div class="upload-show">
+            	{if $data.link_img}<img src="{$data.link_img|images_site}.100x100.jpg" width="100">{/if}
+            </div>
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td align="right">类型：</td>
+    <td>
+    <select name="type_id" id="type_id">
+        <option value="2" {if $data.type_id eq 2} selected {/if}>普通</option>
+        <option value="1" {if $data.type_id eq 1} selected {/if}>首页</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td align="right">排序：</td>
+    <td><input name="orderindex" type="text" id="orderindex" value="{$data.orderindex}"></td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td><input type="submit" name="button" class="btn" id="button" value="保存"></td>
+  </tr>
+</table>
+
+
+</form>
+</div>
+{include file='footer.html'}
+</body>
+</html>

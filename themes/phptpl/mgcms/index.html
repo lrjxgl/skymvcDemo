@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->inc("head.html");?>
+	<body>
+		<?php $this->inc("header.html");?>
+		<div class="layui-main mgt-10">
+			<div class="data-list">
+				<?php
+					if(!empty($data)):
+					foreach($data as $v):	
+				?>
+				<div  class="item">
+					<a href="/index.php?m=mgcms&a=show&_id=<?=$v['_id']?>" class="title"><?=$v['title'];?></a>
+					<div vid="<?=$v['_id']?>" class="js-delete">删除</div>
+				</div>
+				<?php 
+					endforeach;
+					endif;
+				?>
+			</div>
+			<div>
+				<?=$pagelist?>
+			</div>
+		</div>	
+		<?php $this->inc("footer.html");?>
+		<script>
+			$(document).on("click",".js-delete",function(){
+				var _id=$(this).attr("vid");
+				var obj=$(this);
+				$.get("/index.php?m=mgcms&a=delete&ajax=1",{
+					_id:_id
+				},function(data){
+					obj.parents(".item").remove();
+				},"json")
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+
+ <div class="main-body ">
+     <div class="tabs-border">
+        <a class="item " href="{R("/admin.php?m=guest")}">留言板</a>
+        <a class="item active" href="javascript:;">编辑留言</a>
+     
+    </div>
+      <form method='post' action='admin.php?m=guest&a=save'>
+        <input type='hidden' name='id' style='display:none;' value='{$data.id}' >
+        <table class='table table-border-row' width='100%'>
+          <tr>
+            <td width="100">主题：</td>
+            <td><input type='text' name='title' id='title' value='{$data.title}' ></td>
+          </tr>
+          <tr>
+            <td>类型：</td>
+            <td><select name="catid">
+            	{foreach item=c key=k from=$catlist}
+            	<option value="{$k}" {if $data.catid eq $k} selected="selected"{/if}>{$c}</option>
+                {/foreach}
+            </select></td>
+          </tr>
+          <tr>
+            <td>邮箱：</td>
+            <td><input type='text' name='email' id='email' value='{$data.email}' ></td>
+          </tr>
+          <tr>
+            <td>QQ：</td>
+            <td><input type='text' name='qq' id='qq' value='{$data.qq}' ></td>
+          </tr>
+          {if $data}
+          <tr>
+            <td>留言时间：</td>
+            <td>{$data.dateline|date:Y-m-d H:m}</td>
+          </tr>
+          {/if}
+          <tr>
+            <td>留言内容：</td>
+            <td><textarea name='content' id='content' style="width:400px; height:100px;">{$data.content}</textarea></td>
+          </tr>
+           {if $data}
+          <tr>
+            <td>回复内容：</td>
+            <td><textarea  name='reply_content' id='reply_content'  style="width:400px; height:100px;">{$data.reply_content}</textarea></td>
+          </tr>
+          {/if}
+         {if $data.reply_time}
+          <tr>
+            <td>回复时间：</td>
+            <td>{$data.reply_time|date:Y-m-d H:m}</td>
+          </tr>
+          {/if}
+          <tr>
+            <td></td>
+            <td><input type='submit' value='保存' class='btn btn-success'></td>
+          </tr>
+        </table>
+      </form>
+</div>  
+{include file="footer.html"}
+</body>
+</html>

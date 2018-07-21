@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<?php $this->inc("head.html");?>
+	<body>
+		<?php $this->inc("header.html");?>
+		<div class="layui-main" style="margin-top: 10px;">
+			<form id="form" class="layui-form">
+				<input type="hidden" name="model" value="article" />
+				<input type="hidden" name="_id" value="<?=$data['_id']?>" />
+				<div class="layui-form-item">
+				    <label class="layui-form-label">主题</label>
+				    <div class="layui-input-block">
+				      <input type="text" name="title" value="<?=$data['title']?>" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+				    </div>
+				 </div>
+				 
+				  <div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">内容</label>
+				    <div class="layui-input-block">
+				      <textarea name="content" id="content" placeholder="请输入内容" class="layui-textarea"><?=$data['content']?></textarea>
+				    </div>
+				  </div>
+				 <div class="layui-form-item">
+				    <div class="layui-input-block">
+				      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				    </div>
+				  </div>
+			</form>
+		</div>	
+		<?php $this->inc("footer.html");?>
+		<script>
+			var form = layui.form;
+			var layedit = layui.layedit;
+  			var editIndex=layedit.build('content'); 
+			form.on('submit(formDemo)', function(data){
+				layedit.sync(editIndex);
+				$.post(
+					"/index.php?m=mgcms&a=save&ajax=1",
+					$("#form").serialize(),
+					function(data){
+						layer.msg(data.message);
+					},
+					"json"
+				)
+			     
+			    return false;
+			  });
+		</script>	
+	</body>
+</html>

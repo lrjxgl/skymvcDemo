@@ -1,0 +1,18 @@
+<div class="header">
+			<div class="layui-main">
+				
+			<ul class="layui-nav">
+			<li class="logo"><img src="<?=images_site($site['logo']);?>" style="height:40px;"></li>	
+            
+            <?php $nv=M("navbar")->navlist(3);?>
+            
+            <?php if(!empty($nv)):?>
+            <?php foreach($nv as $c):?>
+            <li class="layui-nav-item"><a href="<?=R($c['link_url'])?>"><?=$c['title']?></a></li>
+ 			<?php endforeach;?>
+            <?php endif;?>
+			
+			 
+			</ul>
+			</div>
+		</div>

@@ -1,0 +1,10 @@
+
+ 
+<div class="layui-carousel carousel"   style="margin-top: 10px;">
+    <div carousel-item>
+        <?php foreach($imgsdata as $k=>$v): ?>	         
+        <a href="<?=$v['link1']?>"  ><img src="<?=$v['imgurl']?>" style="width: 100%;" alt="<?=$v['title']?>" /></a>
+        <?php endforeach;?>
+    </div>
+</div>
+ 

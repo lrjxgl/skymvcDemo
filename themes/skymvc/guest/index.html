@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+
+
+ <div class="main-body box960">
+ <div class="tabs-border">
+	<a class="item active" href="{R("/index.php?m=guest")}">留言板</a>
+    <a class="item" href="{R("/index.php?m=guest&a=add")}">添加留言</a>
+    <a class="item " href="{R("/index.php?m=guest&a=my")}">我的留言</a>
+</div>
+ <table class='table table-bordered' width='100%'>
+  <tr class="hd">
+   <td>id</td>
+   <td>主题</td>
+   <td>类型</td>
+   <td>邮箱</td>
+   <td>QQ</td>
+   <td>留言时间</td>
+   <td>留言内容</td>
+   <td>回复内容</td>
+   <td>回复时间</td>
+ 
+  </tr>
+ {foreach item=c from=$data}
+<tr>
+   <td>{$c.id}</td>
+   <td><a href="{R('/index.php?m=guest&a=show&id=$c.id')}">{$c.title}</a></td>
+   <td>{$catlist[$c.catid]}</td>
+   <td>{$c.email}</td>
+   <td>{$c.qq}</td>
+   <td>{$c.dateline|date:Y-m-d H:m}</td>
+   <td>{$c.content|cutstr:32:...}</td>
+   <td>{$c.reply_content|cutstr:32:..}</td>
+   <td>{if $c.reply_time}{$c.reply_time|date:Y-m-d H:m}{else}暂无回复{/if}</td>
+ 
+  </tr>
+   {/foreach}
+ </table>
+<div>{$pagelist}</div>
+</div> 
+{include file="footer.html"}
+</body>
+</html>

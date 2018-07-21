@@ -1,0 +1,51 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+  {include file='html/nav.html'}
+  <div class="main-body w98">
+    <form method='post' action='admin.php?m=html&a=save'>
+      <input type='hidden' name='id' style='display:none;' value='{$data.id}' >
+      <table class='table table-bordered' width='100%'>
+        <tr>
+          <td width="100">标题：</td>
+          <td><input type='text' name='title' id='title' class="w98" value='{$data.title}' ></td>
+        </tr>
+        <tr>
+          <td>唯一代号：</td>
+          <td><input type='text' name='word' id='word' value='{$data.word}' ></td>
+        </tr>
+         
+        <tr>
+          <td>简介：</td>
+          <td> <script type="text/plain" id="info" name="info" >{$data.info}</script></td>
+        </tr>
+        {if $data}
+        <tr>
+          <td>添加时间：</td>
+          <td>{$data.dateline|date:Y-m-d H:m}</td>
+        </tr>
+        {/if}
+        <tr>
+          <td>状态：</td>
+          <td><input type="radio" name="bstatus" value="1" {if $data.bstatus eq 1} checked="checked"{/if} />隐藏 &nbsp; 
+          <input type="radio" name="bstatus" value="2" {if $data.bstatus eq 2} checked="checked"{/if} />显示</td>
+        </tr>
+        <tr>
+          <td>内容：</td>
+          <td> <script type="text/plain" id="content" name="content" >{$data.content}</script></td>
+        </tr>
+        
+        <tr>
+          <td></td>
+          <td><input type='submit' value='保存' class='btn btn-success'></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+ {php loadEditor();}
+ <script>
+ 	var editor=UE.getEditor('content',options);
+	var infoEdit=UE.getEditor('info',options);
+ </script>
+{include file="footer.html"}

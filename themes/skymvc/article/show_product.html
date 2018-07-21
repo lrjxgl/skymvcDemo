@@ -1,0 +1,45 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+<div class="page"> {include file="header.html"}
+  <div class="main-body">
+    <div class="row box960">
+      	 {include file="inc/show_breadcrumb.html"}
+         
+         <div class="col-12-3">
+         	{include file="article/sidebar.html"}
+         </div>
+         
+         <div class="col-12-9">
+         	<div class="w98 right bgf pd-5">
+            	<h3 class="d-title">{$data.title}</h3>
+                <div  class="d-tool">发布时间：{$data.dateline|date:Y-m-d} 
+                
+                {if $data.userid}作者：<a href="{R("/index.php?m=member&userid=$data[userid]")}" ajax-href="{R("/index.php?m=member&a=userinfo&userid=$data[author][userid]")}" class="user_card">{$data['author']['nickname']}</a>
+    {/if}
+    
+    查看({$data.view_num})
+                </div>
+                 
+                  <div class="d-content">{$data.content}</div>
+                 <div>
+                  {if $last_rs}<div class="nextrs">上一篇：<a href="{R('/index.php?m=article&a=show&id=$last_rs.id')}">{$last_rs.title}</a></div>{/if}
+{if $next_rs}<div class="nextrs">下一篇：<a href="{R('/index.php?m=article&a=show&id=$next_rs.id')}">{$next_rs.title}</a></div>{/if}
+</div>
+                <div class="clearfix" style="height:10px;"></div>
+                 
+            </div>
+         </div>
+         
+         
+      
+    </div>
+  </div>
+  <script>
+  addClick("/index.php?m=article&a=addclick&id={$data.id}");
+  
+  </script>
+  {include file="footer.html"} </div>
+</body>
+</html>

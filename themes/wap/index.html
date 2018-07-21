@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	{include file="head.html"}
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		     
+		    <h1 class="mui-title">skymvc演示</h1>
+		</header>
+		 
+		<div class="mui-content">
+		    <div id="slider" class="mui-slider" >
+		<div class="mui-slider-group mui-slider-loop" id="slides"> 
+		 
+		{foreach item=v key=k from=$flashlist}
+		 <div class="mui-slider-item"><a href="{$v.link1}"><img class="img" src="{$v.imgurl|images_site}"></a></div> 
+	 	{/foreach}
+ 		</div>
+ 		<div class="mui-slider-indicator">
+ 		{foreach item=v key=k from=$flashlist}
+   		 <div class="mui-indicator {if $k==0}mui-active{/if}"></div>
+    	{/foreach}
+    	</div>
+	</div>
+	 
+	<div id="listview" class="listview">
+		 
+		{foreach item=c from=$indexlist key=k}
+			{if $c.type == 'video'}
+			<div class="vdlist-item" >
+				<div class="top">
+					<a href="/index.php?m=video&a=show&id={$c.id}" class="title">{$c.title}</a>
+					<div class="num">{$c.view_num}次播放</div>
+				</div>
+				<div class="playbtn"><img src="{$skins}img/play.png" ></div>
+				<div class="time">00:01</div>
+				<video id="vds{$k}" preload="metadata" object-id="{$c.id}" class="vds" webkit-playsinline   playsinline  poster="{$c.imgurl|images_site}" width="100%" src="{$c.videourl}"></video>
+			</div>
+			{else}
+			<a class="listview-item" href="/index.php?m=article&a=show&id={$c.id}">
+				<div class="img">
+					<img src="{$c.imgurl|images_site}.100x100.jpg">
+				</div>
+				<div class="box">
+					<div class="title">{$c.title}</div>
+					<div class="desc">{$c.description}</div>
+				</div>
+			</a>
+			{/if}
+		
+		{/foreach}
+	</div>
+		</div>
+		{assign var="mfooter" value="index"}
+		{include file="footer.html"}
+		<script src="{$skins}index.js"></script>
+	</body>
+</html>

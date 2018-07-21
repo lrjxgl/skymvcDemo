@@ -1,0 +1,40 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+ 
+{include file='html/nav.html'}
+<div class="main-body w98">
+ <table class='table table-bordered' width='100%'>
+  <tr>
+   <td>id</td>
+   <td>标题</td>
+   <td>唯一代号</td>
+   <td>添加时间</td>
+    
+    
+   <td>状态</td>
+<td>操作</td>
+  </tr>
+ {foreach item=c from=$data}
+<tr>
+   <td>{$c.id}</td>
+   <td>{$c.title}</td>
+   <td>{$c.word}</td>
+   <td>{$c.dateline|date:Y-m-d}</td>
+    
+    
+   <td>{if $c.bstatus eq 2}
+           <img src="/static/images/yes.gif" class="ajax_no"  rurl="{$appadmin}?m=html&a=bstatus&id={$c.id}&bstatus=2" url="{$appadmin}?m=html&a=bstatus&id={$c.id}&bstatus=1" />
+           {else}
+           <img src="/static/images/no.gif"  class="ajax_yes" url="{$appadmin}?m=html&a=bstatus&id={$c.id}&bstatus=2" rurl="{$appadmin}?m=html&a=bstatus&id={$c.id}&bstatus=1" />  
+          {/if}</td>
+<td><a href="admin.php?m=html&a=add&id={$c.id}">编辑</a>  <a href="javascript:;" class="delete" url="admin.php?m=html&a=delete&id={$c.id}">删除</a></td>
+  </tr>
+   {/foreach}
+ </table>
+<div>{$pagelist}</div>
+</div> 
+{include file="footer.html"}
+</body>
+</html>

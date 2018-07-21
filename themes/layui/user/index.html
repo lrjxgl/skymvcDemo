@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<style>
+	.uinfo .item{
+		line-height: 40px;
+		border-bottom: 1px solid #ddd;
+	}
+	.uinfo .item .label{
+		margin-right: 10px;
+		display: inline-block;
+		width: 60px;
+		text-align: right;
+	}
+</style>
+<body>
+ {include file="header.html"}
+ <div class="header-bottom"></div>
+  <div class="layui-main">
+<div class="layui-row">
+<div class="layui-col-md3">{include file="inc/user_left.html"}</div>
+<div class="layui-col-md9"> 
+ 
+<div class="tabs-border">
+	<div class="item active">个人中心</div>
+</div>
+ 
+<div class="  uinfo">
+	<div class="item">
+    	<div class="label">用户名</div>
+    	{$data.username} 
+	</div>
+    <div class="item">
+    	<div class="label">手机</div>  {$data.telephone}
+    </div>
+    
+    <div class="item">
+    	<label class="label">注册时间</label> {$data.dateline|date:Y-m-d}
+   	</div>
+        
+    
+</div>
+
+ 
+
+ 
+ 
+
+ 
+ </div>
+</div>
+ </div>
+{include file="footer.html"}
+
+</body>
+</html>

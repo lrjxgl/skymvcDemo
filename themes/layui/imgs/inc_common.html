@@ -1,0 +1,10 @@
+{if $imgsdata}
+   <div class="layui-carousel carousel"   style="margin-top: 10px;">
+         	<div carousel-item>
+           {foreach item=c from=$imgsdata name=t1}
+        <a href="{$c.link1}"  ><img src="{$c.imgurl|IMAGES_SITE}" style="width: 100%;" alt="{$c.title}" /></a>
+              {/foreach}
+         </div>
+        </div>
+ 
+{/if} 

@@ -1,0 +1,14 @@
+<div class="tabs-border">
+	<a href="{$appadmin}?m=weixin" class="item {if get('m') eq 'weixin' && get('a') eq 'default'} active {/if}">微信管理</a>
+    
+    <a href="{$appadmin}?m=weixin&a=add" class="item {if get('m') eq 'weixin' && get('a') eq 'add'} active {/if}">微信添加</a>
+    
+    <a href="{$appadmin}?m=weixin_command" class="item {if get('m') eq 'weixin_command' && get('a') eq 'default'} active {/if}">微信命令管理</a>
+    
+    <a href="{$appadmin}?m=weixin_command&a=add" class="item {if get('m') eq 'weixin_command' && get('a') eq 'add'} active {/if}">微信命令添加</a>
+    
+    <a href="{$appadmin}?m=weixin_user" class="item {if get('m') eq 'weixin_user' } active {/if}">微信用户</a>
+    
+    <a href="{$appadmin}?m=weixin_reply" class="item {if get('m') eq 'weixin_reply'} active {/if}">微信回复</a>
+</div>
+ 

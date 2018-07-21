@@ -1,0 +1,46 @@
+<!DOCTYPE >
+<html>
+<?php $this->inc("head.html");?>
+<body>
+  <?php $this->inc("header.html"); ?>
+  <div class="layui-main">
+     
+      	 <?php $this->inc("inc/list_breadcrumb.html"); ?>
+      	 <div class="layui-row">
+	         <div class="layui-col-md3">
+	          
+	         	<?php $this->inc("article/sidebar.html")?>
+	         </div>
+	         
+	         <div class="layui-col-md9">
+	            
+	         	<ul class="data-list">
+	            	<?php if(!empty($list)):?>
+	            		<?php foreach($list as $c):?>
+	              	 <li <?php if($c['imgurl']):?> class="hasimg" <?php endif;?>>
+										    <a class="aurl" href="<?=R("/index.php?m=article&a=show&id=".$c['id'])?>">
+										       <?php if($c['imgurl']):?> <img src="<?=images_site($c['imgurl'])?>.100x100.jpg"/><?php endif;?>
+										        <dl>
+										            <dt><?=$c['title']?></dt>
+										            <dd class="time"><?=timeago($c['dateline'])?></dd>
+										            <dd class="content"><?=$c['description']?></dd>
+										             
+										        </dl>
+										    </a>
+										</li>
+	              	<?php endforeach;?>
+	              <?php else:?>
+	                <li>暂无内容</li>
+	              <?php endif;?>  
+	            </ul>
+	            <div><?=$pagelist?></div>
+	            
+	         </div>
+	         
+	         
+	      
+	    </div>
+  </div>
+  <?php $this->inc("footer.html")?> </div>
+</body>
+</html>

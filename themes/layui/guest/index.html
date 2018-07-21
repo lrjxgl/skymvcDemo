@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+
+
+ <div class="layui-main">
+ <div class="tabs-border">
+	<a class="item active" href="{R("/index.php?m=guest")}">留言板</a>
+    <a class="item" href="{R("/index.php?m=guest&a=add")}">添加留言</a>
+    <a class="item " href="{R("/index.php?m=guest&a=my")}">我的留言</a>
+</div>
+<div class="guestlist">
+	{foreach item=c from=$data}
+		<div class="item">
+			<div class="title">{$c.title}
+				<div class="time">{$c.dateline|date:Y-m-d H:m}</div>
+			</div>
+			<div class="con"><div class="t">留言内容：</div>{$c.content|nl2br}</div>
+			<div class="con"><div class="t">回复内容：</div>{$c.reply_content|nl2br}</div>
+			
+		</div>
+	{/foreach}
+</div>
+  
+<div>{$pagelist}</div>
+</div> 
+{include file="footer.html"}
+</body>
+</html>

@@ -1,0 +1,37 @@
+<div class="header">
+			<div class="layui-main">
+				
+			<ul class="layui-nav">
+			<li class="logo"><img src="{$site.logo|images_site}" style="height:40px;"></li>	
+            {get data=nv model=navbar fun=navlist(3)}
+            {foreach item=c from=$nv}
+            <li class="layui-nav-item  {if get('m') eq $c.m && get('a') eq $c.a}{if $c.aclabel }{if get($c.aclabel) eq $c.acvalue}layui-this{/if}{else}layui-this{/if}{/if}"><a href="{R("$c.link_url")}">{$c.title}</a></li>
+ 
+            {/foreach}
+			
+			<div style="float: right;">
+					 
+			{if $ssuser}
+            
+            
+	            <li class="layui-nav-item">
+					    <a href="{R('/index.php?m=user')}"><img onerror="imgError(this,100,100)" src="{$ssuser.user_head|images_site}.100x100.jpg" class="layui-nav-img">{$ssuser.nickname}</a>
+					    <dl class="layui-nav-child">
+					      <dd><a href="{R('/index.php?m=user&a=info')}">修改信息</a></dd>
+					      <dd><a href="{R('/index.php?m=guest&a=my')}">我的留言</a></dd>
+					      <dd><a href="{R('/index.php?m=login&a=logout')}">退了</a></dd>
+					    </dl>
+					  </li>
+	        {else}
+	            	<li class="layui-nav-item">
+					    <a href="{R('/index.php?m=login')}">登录</a>
+					  </li>
+					  <li class="layui-nav-item">
+					    <a href="{R('/index.php?m=register')}">注册</a>
+					  </li>
+	        {/if} 
+				  
+			  </div>
+			</ul>
+			</div>
+		</div>

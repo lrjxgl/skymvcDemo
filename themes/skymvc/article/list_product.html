@@ -1,0 +1,84 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+<link href="/plugin/skyweb/prolist.css" rel="stylesheet">
+<div class="page"> {include file="header.html"}
+  <div class="main-body">
+    <div class="  box960">
+      	 {include file="inc/list_breadcrumb.html"}
+          
+         <div class="search-filter-box">
+<input type="hidden" id="filter_catid" value="{$smarty.get.catid}">
+<input type="hidden" id="filter_order" value="{if $smarty.get.orderby}{$smarty.get.orderby}{else}all{/if}">
+
+ 
+  <script>
+    $(function(){
+		var catid=$("#filter_catid").val();
+		var orderby=$("#filter_order").val();
+	 
+		var url;
+		$(".search-option").bind("click",function(e){
+			e.preventDefault();
+			$(this).parents(".search-filter").find(".search-option").removeClass("active");
+			$(this).addClass("active");
+			var v=$(this).attr("v");
+			var obj=$(this).parents(".search-filter").attr("o");
+			eval(obj+"='"+v+"'");		
+			url="/index.php?m=article&a=list&catid="+catid+"&orderby="+orderby+"#select_box";
+			window.location.href=url; 
+		});
+
+	})
+</script>
+    <div class="search-filter" o="catid">
+        <div class="hd">类别</div>
+        <div class="search-option-box">
+        <div class="pd">
+        <div class="search-option {if get('catid') eq $cat_top.catid}active{/if}" v="{$cat_top.catid}">全部</div>
+        		{foreach item=c from=$catlist}
+                <div class="search-option {if get('catid') eq $c.catid}active{/if}" v="{$c.catid}">{$c.cname}</div>
+                {/foreach}
+                 
+                </div>
+        </div>
+        
+    </div>
+    
+    
+     
+    
+    <div class="search-filter" o="orderby">
+        <div class="hd">排序</div>
+        <div class="search-option-box">
+        <div class="pd">
+                <div class="search-option {if get('orderby') eq 'all'}active{/if}" v="all">综合排序</div>
+                <div class="search-option {if get('orderby') eq 'price'}active{/if}" v="price">价格</div>
+                <div class="search-option {if get('orderby') eq 'id'}active{/if} " v="id">发布时间</div>
+                </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="prolist">
+              {foreach item=c key=k from=$list}
+              <div class="item btc-{$k} ">
+                <div class="pd">
+                  <div class="img"><a href="{R('/index.php?m=article&a=show&id=$c.id')}"><img src="{$c.imgurl|images_site}.middle.jpg"></a></div>
+                  <div class="title"><a href="{R('/index.php?m=article&a=show&id=$c.id')}">{$c.title}</a></div>
+                  <div class="desc">{$c.description}</div>
+                  <div class="price">￥{$c.price}</div>
+                </div>
+              </div>
+              {/foreach}
+               
+              <div class="clearfix"></div>
+            </div>
+      
+    </div>
+  </div>
+  {include file="footer.html"} </div>
+</body>
+</html>

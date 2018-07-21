@@ -1,0 +1,32 @@
+
+ 
+ <?php $catlist=M("category")->children(0,MODEL_ARTICLE_ID);?>
+ <div class="cat-list"> 
+           <div class="hd" style=""><span>栏目推荐</span></div>
+           
+           	<?php if(!empty($catlist)):?>
+           	<?php foreach($catlist as $c):?>
+              <div  class="item <?php if(get('catid') == $c['catid']):?>active<?php endif;?>"><a href="<?=R("/index.php?m=article&a=list&catid=".$c["catid"])?>" ><?=$c['cname']?></a></div>
+                
+                <?php if($c['child']):?>
+                <div class="cat-list-2nd">
+                   
+                  <?php foreach($c['child'] as $cc):?>
+                  <div  class="item <?php if(get('catid') == $cc['catid']):?>active<?php endif;?>"><a href="<?=R("/index.php?m=article&a=list&catid=".$cc["catid"])?>"><?=$cc['cname']?></a></div>
+                  <?php endforeach;?>
+                </div>
+                <?php endif;?>
+            <?php endforeach;?>     
+            <?php endif;?>
+            </div>  
+ <div style="height:10px;"></div>
+ 
+<?php $t_c=M("article")->recommendList("$cat.catid",10);?>
+<div class="cat-list"> 
+    <div class="hd" style=""><span>文章推荐</span></div>
+    <?php if($t_c):?>
+    	<?php foreach($t_c as $c):?>
+  			<div class="item"><a href="<?=R("/index.php?m=article&a=show&id=".$c['id'])?>"><?=cutstr($c['title'],36)?></a></div>
+  		<?php endforeach;?>
+  	<?php endif;?>	
+</div>

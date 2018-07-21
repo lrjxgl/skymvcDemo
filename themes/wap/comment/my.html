@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	{include file="head.html"}
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">我的评论</h1>
+		</header>
+		<div class="mui-content">
+		<ul id="list" class="mui-table-view"></ul>
+		<div id="loading" class="pullup">加载更多..</div>
+	</div>
+<script id="list-tpl" type="text/html">
+	 
+	 
+	<%for(var i=0;i<comment_list.length;i++){%>
+		<% var $value=comment_list[i];%>
+		<li class="mui-table-view-cell item">
+		<div class="mui-table ">
+			<div class="mui-table-cell mui-col-xs-10">
+				
+				<h4 class="content"><%=#$value.content%></h4>
+				<h5 ><%=dateFormat($value.dateline,"yyyy-MM-dd")%></h5>
+			</div>
+			<div class="mui-table-cell mui-col-xs-2 mui-text-right js-cm-del" v="<%=$value.id%>">
+				<span class="mui-h5">删除</span>
+			</div>
+			
+			
+		</div>
+		</li>
+	<%}%>	
+	
+</script>
+<script src="/plugin/skyweb/listload.js"></script>
+	<script src="/plugin/jquery/template-native.js"></script>
+	<script src="{$skins}comment/my.js"></script>
+	</body>
+</html>

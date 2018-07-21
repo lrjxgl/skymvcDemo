@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+{include file="header.html"}
+<div class="main-body box960">
+	<div class="">
+    	<table>
+        	<tr>
+            	<td><input type="text" id="telephone" class="" /></td>
+                <td>
+                	<div id="getTel" class="btn"><span id="st">获取短信</span></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>
+	$(function(){
+		$("#getTel").click(function(){
+			$.get("/index.php?m=smstest&a=Reg&ajax=1&telephone="+$("#telephone").val(),function(data){
+				skyToast(data.message);
+				if(data.error==0){
+					$("#st").html("60");
+					var it=setInterval(function(){
+						var t=$("#st").html();
+						t--;
+						$("#st").html(t);
+						if(t<=0){
+							$("#st").html("获取短信");
+							clearInterval(it);
+						}
+					},1000);
+				}
+			},"json");
+		});
+	});
+</script>
+{include file="footer.html"}
+</body>
+</html>

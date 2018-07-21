@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+<div class="tabs-border">
+	<a class="item active" href="{$appadmin}?m=config">网站配置</a>
+</div>
+<form method="post"  action="{$appadmin}?m=config&a=save">
+	<table class="table">
+    	<tr>
+        	<td class="w90">留言登录</td>
+            <td>
+            	<input type="radio" name="guestlogin" {if $data.guestlogin==1} checked{/if} value="1">是 &nbsp; <input type="radio" name="guestlogin" {if $data.guestlogin neq 1} checked{/if} value="2"> 否
+            </td>
+        </tr>
+        
+        <tr>
+        	<td class="w90">验证码</td>
+            <td>
+            	<input type="radio" name="guestcheckcode" {if $data.guestcheckcode==1} checked{/if} value="1">开启 &nbsp; <input type="radio" name="guestcheckcode" {if $data.guestcheckcode neq 1} checked{/if} value="2"> 关闭
+            </td>
+        </tr>
+        
+        <tr>
+        	<td></td>
+            <td>
+            	<button class="btn ">保存配置</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+{include file="footer.html"}
+</body>
+</html>

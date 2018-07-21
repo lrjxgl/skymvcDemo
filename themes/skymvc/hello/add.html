@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+{include file="header.html"}
+<div class="main-body box960">
+  <div class="tabs-border"> 
+  		<a class="item" href="{R('/index.php?m=hello')}">Default</a> 
+  		<a class="item" href="{R('/index.php?m=hello&a=my')}">My</a> 
+        <a class="item  active" href="{R('/index.php?m=hello&a=add')}">Add</a> 
+  </div>
+  <form method="post" action="{R('/index.php?m=hello&a=save')}">
+    <input type="hidden" name="id" style="display:none;" value="{$data.id}" >
+    <table class="table table-bordered" >
+      <tr>
+        <td>主题：</td>
+        <td><div class="input-row">
+            <input type="text" name="title" id="title" value="{$data.title}" >
+          </div></td>
+      </tr>
+      <tr>
+        <td>内容：</td>
+        <td><div class="textarea-row">
+            <textarea name="content" id="content" >{$data.content}</textarea>
+          </div></td>
+      </tr>
+      {if $data}
+      <tr>
+        <td>添加时间：</td>
+        <td>{$data.dateline|date:Y-m-d H:m}</td>
+      </tr>
+      {/if}
+      <tr>
+        <td>状态：</td>
+        <td><input type="text" name="bstatus"   id="bstatus" value="{$data.bstatus}" ></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="保存" class="btn btn-success btn-row"></td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}
+</body>
+</html>

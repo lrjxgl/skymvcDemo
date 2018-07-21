@@ -1,0 +1,29 @@
+{include file="header.html"}
+<div> 
+{include file='article/nav.html'}
+ <table class="table table-bordered" width="100%">
+  <tr><td>id：</td><td>{$data.id}</td></tr>
+  <tr><td>标题：</td><td>{$data.title}</td></tr>
+  <tr><td>分类：</td><td>{$data.catid}</td></tr>
+  <tr><td>关键字：</td><td>{$data.keywords}</td></tr>
+  <tr><td>描述：</td><td>{$data.description}</td></tr>
+  <tr><td>发布时间：</td><td>{$data.dateline}</td></tr>
+  <tr><td>状态：</td><td>{$data.bstatus}</td></tr>
+  <tr><td>是否有封面：</td><td>{$data.is_img}</td></tr>
+  <tr><td>封面图片：</td><td>{$data.imgurl}</td></tr>
+  <tr><td>临时数据：</td><td>{$data.is_temp}</td></tr>
+  <tr><td>最后发布时间：</td><td>{$data.last_time}</td></tr>
+  <tr><td>推荐：</td><td>{$data.is_recommend}</td></tr>
+  <tr><td>最新：</td><td>{$data.isnew}</td></tr>
+  <tr><td>最热：</td><td>{$data.ishot}</td></tr>
+  <tr><td>访问数：</td><td>{$data.view_num}</td></tr>
+  <tr><td>产品价格：</td><td>{$data.price}</td></tr>
+  <tr><td>市场价格：</td><td>{$data.market_price}</td></tr>
+  <tr><td>库存数：</td><td>{$data.total_num}</td></tr>
+  <tr><td>销售数：</td><td>{$data.sold_num}</td></tr>
+  <tr><td>内容：</td><td>{$data.content}</td></tr>
+  <tr><td>详情模板：</td><td>{$data.tpl}</td></tr>
+ </table>
+
+</div> 
+{include file="footer.html"}

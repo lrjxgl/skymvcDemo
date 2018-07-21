@@ -1,0 +1,49 @@
+<!DOCTYPE >
+<html>
+<?php $this->inc("head.html");?>
+<body>
+ <?php $this->inc("header.html"); ?>
+  <div class="layui-main">
+    
+      	 <?php $this->inc("inc/list_breadcrumb.html"); ?>
+      	 <div class="layui-row">
+	         <div class="layui-col-md3">
+	          
+	         	<?php $this->inc("article/sidebar.html")?>
+         </div>
+         
+         <div class="layui-col-md9">
+         	<div class="w98 right bgf pd-5">
+            	<h3 class="d-title"><?=$data['title']?></h3>
+                <div  class="d-tool">发布时间：<?=date("Y-m-d",$data['dateline'])?> 
+                
+                 
+    
+    查看(<?=$data['view_num']?>)
+    	
+                </div>
+                 
+                  <div class="d-content"><?=$data['content']?></div>
+                 <div class="show-more">
+                <?php if($last_rs):?>
+                	<div class="nextrs">上一篇：<a href="<?=R('/index.php?m=article&a=show&id='.$last_rs['id'])?>"><?=$last_rs['title']?></a></div>
+                <?php endif;?>	
+				<?php if($next_rs):?>
+					<div class="nextrs">下一篇：<a href="<?=R('/index.php?m=article&a=show&id='.$next_rs['id'])?>"><?=$next_rs['title']?></a></div>
+				<?php endif;?>	
+</div>
+                 
+            </div>
+         </div>
+         
+         
+      
+    </div>
+  </div>
+  <script>
+  addClick("/index.php?m=article&a=addclick&id=<?=$data['id']?>");
+  
+  </script>
+  <?php $this->inc("footer.html")?> </div>
+</body>
+</html>

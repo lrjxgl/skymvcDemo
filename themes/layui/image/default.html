@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+
+<body>
+{include file="header.html"}
+<div class="main-body box960">
+	<div ><a href="/index.php?m=image&a=image">图片处理</a></div>
+    <div>
+    <form method="post"  action="/index.php?m=image&a=yzm">
+    <input type="text" name="yzm">
+    <img src="/index.php?m=image&a=checkcode" onClick="this.src='/index.php?m=image&a=checkcode&t='+Math.random()" />
+    <button type="submit" class="btn">验证</button>
+    </form>
+    </div>
+</div>
+{include file="footer.html"}
+</body>
+</html>

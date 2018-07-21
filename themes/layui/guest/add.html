@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+<body>
+{include file="header.html"}
+
+ <div class="layui-main">
+     <div class="tabs-border">
+        <a class="item " href="{R('/index.php?m=guest')}">留言板</a>
+        <a class="item active" href="{R('/index.php?m=guest&a=add')}">添加留言</a>
+        <a class="item"  href="{R('/index.php?m=guest&a=my')}"> 我的留言</a>
+    </div>
+      <form class="layui-form" method='post' action='index.php?m=guest&a=save'>
+        <input type='hidden' name='id' style='display:none;' value='{$data.id}' >
+        <div class="layui-form-item">
+		    <label class="layui-form-label">主题</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+		    </div>
+		</div>
+		
+		<div class="layui-form-item">
+		    <label class="layui-form-label">类型</label>
+		    <div class="layui-input-block">
+		      <select name="catid">
+            	{foreach item=c key=k from=$catlist}
+            	<option value="{$k}" {if $data.catid eq $k} selected="selected"{/if}>{$c}</option>
+                {/foreach}
+            </select>
+		    </div>
+		</div>
+		
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">邮箱</label>
+			<div class="layui-input-block">
+				<input class="layui-input" type='text' name='email' id='email' value='{$data.email}' >
+			</div>
+		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">QQ</label>
+			<div class="layui-input-block">
+				<input class="layui-input" type='text' name='qq' id='qq' value='{$data.qq}' >
+			</div>
+		</div>
+		
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">内容</label>
+			<div class="layui-input-block">
+				<textarea name='content' id='content' class="layui-textarea">{$data.content}</textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">验证码</label>
+			<div class="layui-input-inline">
+				<input type="text" class="layui-input" name="yzm" />
+			</div>
+			<div class="layui-form-mid"><img src="/index.php?m=checkcode" style="height: 36px;
+    position: relative;
+    top: -6px" /></div>
+		</div>
+		 
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<input type='submit' value='保存' class='layui-btn'>
+			</div>
+		</div>
+         
+      </form>
+</div>  
+{include file="footer.html"}
+<script>
+//Demo
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    layer.msg(JSON.stringify(data.field));
+    return false;
+  });
+});
+</script>
+</body>
+</html>

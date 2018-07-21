@@ -1,0 +1,119 @@
+<!DOCTYPE >
+<html>
+{include file="head.html"}
+<body>
+
+ {include file="ad/nav.html"}
+    <form method="post" action="admin.php?m=ad&a=save">
+    <input type="hidden" name="id" style="display:none;" value="{$data.id}" >
+      <table class="table table-bordered" width="100%">
+        
+        <tr>
+          <td width="100">所属分类：</td>
+          <td>
+          <select name="tag_id" id="ajax_tag_id">
+          <option value="0">请选择</option>
+          {foreach item=c key=k from=$tag_list}
+          <option value="{$k}" {if $k eq $data.tag_id or $k eq get_post("tag_id")} selected="selected"{/if}>{$c.title}({$c.width}*{$c.height})</option>
+           {if $c.child}
+            	{foreach item=cc from=$c.child}
+                	<option value="{$cc.tag_id}" {if $cc.tag_id eq $data.tag_id} selected="selected"{/if}>|--{$cc.title}({$cc.width}*{$cc.height})</option>
+                {/foreach}
+            {/if}
+          {/foreach}
+          </select>
+        	
+            
+        
+        </td> 
+        </tr>
+        <tr>
+          <td>标题：</td>
+          <td><input type="text" name="title" id="title" class="w600" value="{$data.title}" ></td>
+        </tr>
+        <tr>
+          <td>描述：</td>
+          <td><textarea name="info" id="info"  class="w600" >{$data.info}</textarea></td>
+        </tr>
+        <tr>
+          <td>链接1：</td>
+          <td><input type="text" name="link1" id="link1"  class="w600"  value="{$data.link1}" ></td>
+        </tr>
+        <tr>
+          <td>链接2：</td>
+          <td><input type="text" name="link2" id="link2"  class="w600"  value="{$data.link2}" ></td>
+        </tr>
+        <tr>
+          <td>开始时间：</td>
+          <td><input type="text" name="starttime" id="starttime" value="{if $data}{$data.starttime|date:Y-m-d H:m:s}{/if}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ></td>
+        </tr>
+        <tr>
+          <td>结束时间：</td>
+          <td><input type="text" name="endtime" id="endtime" value="{if $data}{$data.endtime|date:Y-m-d H:m:s}{/if}" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ></td>
+        </tr>
+        <tr>
+          <td>图片地址：</td>
+          <td>
+          <div  class="upload-row">
+    	<div class="btn-upload">
+        	上传图片
+          <input type="file" name="upimg" id="up1"  class="btn-upload-file " onChange="uploadImg('up1')">
+         </div>
+ 
+          <input type="hidden" name="imgurl" class="imgurl upload-field" value="{$data.imgurl}">
+          <span class="imgShow upload-show">
+          {if $data.imgurl}
+          <img src="{$data.imgurl|images_site}.100x100.jpg">
+          {/if}
+          </span>
+      </div></td>
+        </tr>
+        
+        <tr>
+          <td>图片地址2：</td>
+          <td><div id="upload-row" >
+    	<div class="btn-upload">
+        	上传图片
+          <input type="file" name="upimg" id="up2"  class="btn-upload-file" onChange="uploadImg('up2')">
+         </div>
+ 
+          <input type="hidden" name="imgurl2" class="upload-field" value="{$data.imgurl2}">
+          <span class="imgShow upload-show">
+          {if $data.imgurl2}
+          <img src="{$data.imgurl2|images_site}.100x100.jpg">
+          {/if}
+          </span>
+      </div></td>
+        </tr>
+        
+        <tr>
+          <td>排序：</td>
+          <td><input type="text" name="orderindex" id="orderindex" value="{$data.orderindex}" ></td>
+        </tr>
+        <tr>
+          <td>状态：</td>
+          <td><input type="radio" name="status" value="1" {if $data.status eq 1} checked="checked"{/if} />隐藏 &nbsp; 
+          <input type="radio" name="status" value="2" {if $data.status eq 2} checked="checked"{/if} />显示</td>
+        </tr>
+        {if $data}
+        <tr>
+          <td>添加时间：</td>
+          <td>{$data.dateline|date:Y-m-d}</td>
+        </tr>
+        {/if}
+         
+        
+        
+        <tr>
+          <td></td>
+          <td><input type="submit" value="保存" class="btn btn-success"></td>
+        </tr>
+      </table>
+    </form>
+ 
+
+<script language="javascript" src="/plugin/My97DatePicker/WdatePicker.js"></script>
+
+{include file="footer.html"}
+</body>
+</html>

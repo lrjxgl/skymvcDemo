@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+{include file="head.html"}
+ 
+ 
+<body>
+ 
+{include file="header.html"}
+<div class="layui-main">
+	{include file="inc/show_breadcrumb.html"}
+ 
+    <div class="layui-row">
+      
+      
+       
+           
+          		<div class="layui-col-md7">
+                	{get data=imgsdata model=imgs fun=get("article","$data.id")}
+{if $imgsdata}
+{include file="imgs/inc_common.html"}
+{else}
+  
+ <div><a href="{$data.imgurl|images_site}" target="_blank"><img src="{$data.imgurl|images_site}.middle.jpg" width="100%"></a></div>
+{/if}	                	 
+                
+                </div>
+                <div class="layui-col-md5">
+                	<div style="width:90%; float:right;">
+                    	
+                		<h3 class="hd">{$data.title}</h3>
+                        <div style="color:#aaa; padding:10px;">{$data.description}</div>
+                        <ul class="pl">   
+                            <li class="price"><tt >价格：</tt><em>￥{$data.price}</em></li> 
+                            <li class="market-price"><tt >市场价：<i >￥{$data.market_price}</i></tt></li>   
+                            <li><tt >库存：<i >{$data.total_num}</i></tt></li>
+                            <li><tt>销量：<i >{$data.sold_num}</i></tt></li>
+                        </ul>
+                          
+                        <style>
+                        	.pl li{
+                        		line-height: 40px;
+                        		color: #333;
+                        	}
+                        	.pl li tt{
+                        		color: #444;
+                        	}
+                        	.pl i{
+                        		color: #666;
+                        		font-size: 16px;
+                        	}
+                        	.pl .price tt{
+                        		color: #444;
+                        	}
+                        	.pl .price em{
+                        		color: #f60;
+                        		font-size: 18px;
+                        	}
+                        	.pl .market-price  i{
+                        		text-decoration:line-through; color:#ccc
+                        	}
+                        </style>
+                        
+                       
+                        
+                         
+                    </div>
+                </div>
+          </div>
+          
+          <div style="width:100%; height:30px;"></div>
+          <div class="d-content">{$data.content}</div>
+  </div>
+  </div>
+  </div>
+ 
+  {include file="footer.html"} 
+    <script>
+ 	$(function(){
+ 		 layui.carousel.render({
+			 		elem:".carousel",
+			 		width:"100%",
+			 		height:"400px" 
+			 });
+ 	})
+			
+		</script>
+</body>
+</html>

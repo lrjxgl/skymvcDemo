@@ -1,0 +1,9 @@
+<?php
+define("GUESTLOGIN","1");
+define("GUESTCHECKCODE","1");
+define("PHONE_ON","0");
+define("PHONE_REG","0");
+define("PHONE_USER","lrjxgl");
+define("PHONE_PWD","1234567");
+define("PHONE_NUM","15985840591");
+?>

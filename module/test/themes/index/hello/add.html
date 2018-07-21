@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+{include file="head.html"}
+
+<body>
+<div class="page">
+{include file="header.html"}
+<div class="main-body">
+<div class="box960">
+<div class="row">
+<div class="col-5-1">{include file="[c]/sidebar.html"}</div>
+<div class="col-5-4">
+{include file='hello/nav.html'}
+<form method=&quot;post&quot; action=&quot;/module.php?m=hello&a=save&quot;>
+<input type=&quot;hidden&quot; name=&quot;id&quot; style=&quot;display:none;&quot; value=&quot;{$data.id}&quot; >
+ <table class=&quot;table table-bordered&quot; >
+  <tr><td>主题：</td><td><input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot; value=&quot;{$data.title}&quot; ></td></tr>
+  <tr><td>内容：</td><td><input type=&quot;text&quot; name=&quot;content&quot; id=&quot;content&quot; value=&quot;{$data.content}&quot; ></td></tr>
+  {if $data}<tr><td>添加时间：</td><td>{$data.dateline|date:Y-m-d H:m}</td></tr>{/if}
+  <tr><td>状态：</td><td><input type=&quot;text&quot; name=&quot;bstatus&quot; id=&quot;bstatus&quot; value=&quot;{$data.bstatus}&quot; ></td></tr>
+<tr><td></td><td><input type=&quot;submit&quot; value=&quot;保存&quot; class=&quot;btn btn-success&quot;></td></tr> </table>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+{include file="footer.html"}
+</div>
+</body>
+</html>
